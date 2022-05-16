@@ -23,4 +23,7 @@ def parse(url = URL) :
     return pattern
 
 df = pd.DataFrame(data=parse())
+
+df['year'] = '2021'
+
 df.to_csv(OUTFILE)
