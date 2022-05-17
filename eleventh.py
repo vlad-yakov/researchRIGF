@@ -9,7 +9,7 @@ r = requests.get(URL)
 print(r.status_code)
 
 def parse(url = URL) :
-    pattern = {'surname': [], 'name': [], 'org': [], 'region': []}
+    pattern = {'surname': [], 'name': [], 'org': [], 'region': [], 'year': []}
     soup = bs(r.text, "html.parser")
     #забираем строки таблицы
     cells = soup.find_all('tr')
@@ -20,10 +20,12 @@ def parse(url = URL) :
             pattern['name'].append(cell.contents[2].text)
             pattern['org'].append(cell.contents[3].text)
             pattern['region'].append(cell.contents[4].text)
+            pattern['year'].append('2021')
     return pattern
 
 df = pd.DataFrame(data=parse())
 
-df['year'] = '2021'
+print(df)
 
-df.to_csv(OUTFILE)
+
+
