@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import pandas as pd
+import csv
+
+
 
 URLS = ["https://rigf2015.ru/prog/?p=speakers",
        "https://rigf2016.ru/prog/?p=speakers",
@@ -26,9 +29,9 @@ def parse() :
                 pattern['name'].append(cell.contents[2].text)
                 pattern['org'].append(cell.contents[3].text)
                 pattern['region'].append(cell.contents[4].text)
-                pattern['year'].append('2017')
+                pattern['year'].append(url[12:16])
     return pattern
 
 df = pd.DataFrame(data=parse())
 
-print(df)
+df.to_csv(OUTFILE)
