@@ -3,16 +3,12 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 import csv
 
-
-
 URLS = ["https://rigf2015.ru/prog/?p=speakers",
        "https://rigf2016.ru/prog/?p=speakers",
        "https://rigf2017.ru/prog/?p=speakers",
        "https://rigf2018.ru/prog/?p=speakers",
        "https://rigf2019.ru/prog/?p=speakers",
        "https://rigf2021.ru/prog/?p=speakers"]
-
-OUTFILE = 'stats.csv'
 
 def parse() :
     pattern = {'surname': [], 'name': [], 'org': [], 'region': [], 'year': []}
@@ -32,6 +28,5 @@ def parse() :
                 pattern['year'].append(url[12:16])
     return pattern
 
-df = pd.DataFrame(data=parse())
+df2 = pd.DataFrame(data=parse())
 
-df.to_csv(OUTFILE)
